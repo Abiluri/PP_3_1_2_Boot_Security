@@ -1,7 +1,5 @@
 package ru.kata.spring.boot_security.demo.configs;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
