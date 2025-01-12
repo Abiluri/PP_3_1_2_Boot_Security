@@ -22,17 +22,20 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/", "/index").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().successHandler(successUserHandler)
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/", "/index").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .successHandler(successUserHandler)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .permitAll()
+                );
         return http.build();
     }
+
 
     // Аутентификация inMemory
     @Bean
