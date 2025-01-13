@@ -45,17 +45,18 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-
     // Аутентификация inMemory
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
+        // Хешируем пароль перед сохранением
+        UserDetails user = User.builder()
                 .username("user")
-                .password("user")
+                .password(passwordEncoder().encode("user")) // Хешируем пароль
                 .roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user);
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
