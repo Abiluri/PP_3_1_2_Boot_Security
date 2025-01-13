@@ -45,7 +45,6 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-
     // Аутентификация inMemory
     @Bean
     public UserDetailsService userDetailsService() {
